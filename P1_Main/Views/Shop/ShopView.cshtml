@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ModelLayer.ViewModels.LocationInventoryViewModel>
+
+@{
+    ViewData["Title"] = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>   Shop   -   @Model.FirstOrDefault(x => x.Location != null).Location.LocationName</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in Model) {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td class="text-center">
+                <form asp-controller="Shop" asp-action="Details" asp-route-id="@item.ProductId">
+                    <button type="submit" class="btn btn-primary">Select</button>
+                </form>
+            </td>
+        </tr>
+        }
+    <tr>
+        <td>
+            <label></label>
+        </td>
+        <td>
+            <label></label>
+        </td>
+        <td>
+            <label></label>
+        </td>
+        <td>
+            <form asp-controller="Shop" asp-action="CurrentCart">
+                <button type="submit" class="btn btn-primary">View Cart</button>
+            </form>
+        </td>
+        <td>
+            <label></label>
+        </td>
+    </tr>
+    </tbody>
+</table>

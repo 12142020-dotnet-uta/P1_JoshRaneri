@@ -1,0 +1,54 @@
+﻿@model ModelLayer.ViewModels.LocationInventoryViewModel
+
+@{
+    ViewData["Title"] = "ItemDetailView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4 text-center">
+        <form asp-action="AddToCart" asp-route-id="ProductId" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Location.LocationId" class="form-control" />
+                <input type="hidden" asp-for="Location.LocationName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="ProductId" class="form-check control" />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">@Model.Description</label>
+                <input type="hidden" asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Price $@Model.Price</label>
+                <input type="hidden" asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="text-align: center;">
+                <label asp-for="purchaseQuantity" class="control-label">Enter purchase quantity: </label><br/>
+                <input asp-for="purchaseQuantity" class="form-control" style="width: 80px; display: inline;"/><br/>
+                <span asp-validation-for="purchaseQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add to Cart" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Shop">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

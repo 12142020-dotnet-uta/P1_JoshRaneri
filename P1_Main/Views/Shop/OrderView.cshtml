@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ModelLayer.ViewModels.OrderInvoiceViewModel>
+
+@{
+    ViewData["Title"] = "Order View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Order Details</h1>
+<br />
+<label>@ViewBag.OrderDate</label>
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Product</label>
+            </th>
+            <th>
+                <label>Price</label>
+            </th>
+            <th>
+                <label> </label>
+            </th>
+            <th>
+                <label>@Html.DisplayNameFor(model => model.Quantity)</label>
+            </th>
+            <th>
+                <label> </label>
+            </th>
+            <th>
+                <label>Total</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <label>@Html.DisplayFor(modelItem => item.Product.Description)</label>
+                </td>
+                <td>
+                    <label>@Html.DisplayFor(modelItem => item.Product.Price)</label>
+                </td>
+                <td>
+                    <label> x </label>
+                </td>
+                <td>
+                    <label>@Html.DisplayFor(modelItem => item.Quantity)</label>
+                </td>
+                <td>
+                    <label> = </label>
+                </td>
+                <td>
+                    <label>$@Html.DisplayFor(modelItem => item.LineTotal)</label>
+                </td>
+
+            </tr>
+        }
+        <tr>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label>Order Total : </label>
+            </td>
+            <td>
+                <label>$@ViewBag.OrderTotal</label>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <form asp-controller="Shop" asp-action="Shop">
+                    <button type="submit" class="btn btn-primary">Back to Shop</button>
+                </form>
+            </td>
+            <td>
+                <form asp-controller="Home" asp-action="Index">
+                    <button type="submit" class="btn btn-primary">Home</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

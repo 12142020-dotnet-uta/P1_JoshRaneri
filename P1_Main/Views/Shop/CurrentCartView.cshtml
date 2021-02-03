@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ModelLayer.ViewModels.InvoiceViewModel>
+
+@{
+    ViewData["Title"] = "Current Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Current Cart</h1>
+<br/>
+<label>@DateTime.Now</label>
+<br/>
+<br/>
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th>
+                <label>Product</label>
+            </th>
+            <th>
+                <label>Price</label>
+            </th>
+            <th>
+                <label> </label>
+            </th>
+            <th>
+                <label>@Html.DisplayNameFor(model => model.Quantity)</label>
+            </th>
+            <th>
+                <label> </label>
+            </th>
+            <th>
+                <label>Total</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <label>@Html.DisplayFor(modelItem => item.Product.Description)</label>
+                </td>
+                <td>
+                    <label>@Html.DisplayFor(modelItem => item.Product.Price)</label>
+                </td>
+                <td>
+                    <label> x </label>
+                </td>
+                <td>
+                    <label>@Html.DisplayFor(modelItem => item.Quantity)</label>
+                </td>
+                <td>
+                    <label> = </label>
+                </td>
+                <td>
+                    <label>$@Html.DisplayFor(modelItem => item.LineTotal)</label>
+                </td>
+
+            </tr>
+        }
+        <tr>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label>Order Total : </label>
+            </td>
+            <td>
+                <label>$@ViewBag.CartTotal</label>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <label></label>
+            </td>
+            <td>
+                <form asp-controller="Shop" asp-action="EmptyCart">
+                    <button type="submit" class="btn btn-primary">Empty Cart</button>
+                </form>
+            </td>
+            <td>
+                <form asp-controller="Shop" asp-action="Shop">
+                    <button type="submit" class="btn btn-primary">Shop Home</button>
+                </form>
+            </td>
+            <td>
+                <form asp-controller="Shop" asp-action="CheckOut">
+                    <button type="submit" class="btn btn-primary">Place Order</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

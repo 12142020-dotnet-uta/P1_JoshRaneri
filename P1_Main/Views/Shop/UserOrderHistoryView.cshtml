@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ModelLayer.Order>
+
+@{
+    ViewData["Title"] = "User History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>User Order History</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label> @Html.DisplayNameFor(model => model.OrderId)</label>
+            </th>
+            <th>
+                <label>@Html.DisplayNameFor(model => model.LocationId)</label>
+            </th>
+            <th>
+                <label>@Html.DisplayNameFor(model => model.Id)</label>
+            </th>
+            <th>
+                <label>@Html.DisplayNameFor(model => model.OrderTime)</label>
+            </th>
+            <th>
+                <label>@Html.DisplayNameFor(model => model.OrderTotal)</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <label>@Html.DisplayFor(modelItem => item.OrderId)</label>
+            </td>
+            <td>
+                <label>@Html.DisplayFor(modelItem => item.LocationId)</label>
+            </td>
+            <td>
+                <label>@Html.DisplayFor(modelItem => item.Id)</label>
+            </td>
+            <td>
+                <label>@Html.DisplayFor(modelItem => item.OrderTime)</label>
+            </td>
+            <td>
+                <label>$@Html.DisplayFor(modelItem => item.OrderTotal)</label>
+            </td>
+            <td class="text-center">
+                <form asp-controller="Shop" asp-action="OrderDetails" asp-route-id="@item.OrderId">
+                    <button type="submit" class="btn btn-primary">Select</button>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
