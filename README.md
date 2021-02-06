@@ -7,6 +7,7 @@
   * ASP.NET Core 5 with MVC
   * Entity Framework Core 6.4
   * MS SQL Server 2019
+  * Microsoft IIS 7
   
 ## Features
   * Users can create an account and log in securely
